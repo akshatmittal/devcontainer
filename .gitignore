@@ -12,3 +12,6 @@ pnpm-debug.log*
 .cache/
 .devcontainer/data/
 .vscode/
+
+test.sh
+AGENTS.md
