@@ -1,6 +1,8 @@
 FROM ubuntu:noble
 
 ENV DEBIAN_FRONTEND=noninteractive 
+ENV PNPM_HOME="/home/vscode/.local/share/pnpm"
+ENV PATH="${PATH}:${PNPM_HOME}"
 
 # Basic
 RUN <<EOF
@@ -22,14 +24,30 @@ apt-get clean
 rm -rf /var/lib/apt/lists/*
 EOF
 
-# Node
-COPY --chown=vscode:vscode scripts/install-node.sh /tmp/install-node.sh
 USER vscode
+
+# Node
+COPY --chown=vscode:vscode --chmod=755 scripts/install-node.sh /tmp/install-node.sh
 RUN <<EOF
 set -e
-chmod +x /tmp/install-node.sh
 /tmp/install-node.sh
 rm /tmp/install-node.sh
+EOF
+
+# Codex
+COPY --chown=vscode:vscode --chmod=755 scripts/install-codex.sh /tmp/install-codex.sh
+RUN <<EOF
+set -e
+/tmp/install-codex.sh
+rm /tmp/install-codex.sh
+EOF
+
+# Claude Code
+COPY --chown=vscode:vscode --chmod=755 scripts/install-claude-code.sh /tmp/install-claude-code.sh
+RUN <<EOF
+set -e
+/tmp/install-claude-code.sh
+rm /tmp/install-claude-code.sh
 EOF
 
 USER root
