@@ -8,7 +8,7 @@ ghcr.io/akshatmittal/devcontainer:latest
 
 It includes:
 
-- Docker Hub `ubuntu:noble` (24.04.04)
+- Docker Hub `ubuntu:noble` (24.04.4)
 - Node 24 via `nvm`
 - `pnpm` via Corepack
 - Codex CLI
@@ -24,6 +24,20 @@ In another repository, add `.devcontainer/devcontainer.json`:
   "image": "ghcr.io/akshatmittal/devcontainer:latest",
   "remoteUser": "vscode"
 }
+```
+
+## VS Code Usage
+
+Install the Dev Containers extension in VS Code, then open the consuming repository and run this command from the Command Palette:
+
+```text
+Dev Containers: Reopen in Container
+```
+
+After changing `.devcontainer/devcontainer.json`, rebuild the container:
+
+```text
+Dev Containers: Rebuild Container
 ```
 
 You can extend it with project-specific features and commands:
