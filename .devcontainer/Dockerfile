@@ -1,14 +1,18 @@
 FROM ubuntu:noble
 
 ENV DEBIAN_FRONTEND=noninteractive 
+
 ENV PNPM_HOME="/home/vscode/.local/share/pnpm"
-ENV PATH="${PATH}:${PNPM_HOME}"
+ENV CARGO_HOME="/home/vscode/.cargo"
+ENV RUSTUP_HOME="/home/vscode/.rustup"
+
+ENV PATH="${PATH}:${PNPM_HOME}:${CARGO_HOME}/bin"
 
 # Basic
 RUN <<EOF
 set -e
 apt-get update
-apt-get install -y --no-install-recommends ca-certificates curl git lsb-release sudo
+apt-get install -y build-essential ca-certificates curl git libssl-dev lsb-release pkg-config sudo
 if getent passwd ubuntu >/dev/null; then
   usermod --login vscode --move-home --home /home/vscode ubuntu
   if getent group ubuntu >/dev/null; then
@@ -48,6 +52,14 @@ RUN <<EOF
 set -e
 /tmp/install-claude-code.sh
 rm /tmp/install-claude-code.sh
+EOF
+
+# Rust
+COPY --chown=vscode:vscode --chmod=755 scripts/install-rust.sh /tmp/install-rust.sh
+RUN <<EOF
+set -e
+/tmp/install-rust.sh
+rm /tmp/install-rust.sh
 EOF
 
 USER root

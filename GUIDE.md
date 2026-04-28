@@ -13,6 +13,7 @@ It includes:
 - `pnpm` via Corepack
 - Codex CLI
 - Claude Code
+- Rust stable via `rustup`
 
 ## Using This Image
 

@@ -48,4 +48,4 @@ jobs:
           imageName: ${{ env.IMAGE_NAME }}
           imageTag: ${{ steps.image.outputs.tags }}
           push: ${{ steps.image.outputs.push }}
-          runCmd: node --version && npm --version && pnpm --version && codex --version && claude --version && lsb_release -ds
+          runCmd: .devcontainer/scripts/verify-tools.sh
