@@ -3,7 +3,7 @@
 This repository publishes a reusable Dev Container image:
 
 ```text
-ghcr.io/akshatmittal/devcontainer:latest
+ghcr.io/akshatmittal/devbox:latest
 ```
 
 It includes:
@@ -24,7 +24,7 @@ In another repository, add `.devcontainer/devcontainer.json`:
 ```json
 {
   "name": "My Project",
-  "image": "ghcr.io/akshatmittal/devcontainer:latest",
+  "image": "ghcr.io/akshatmittal/devbox:latest",
   "remoteUser": "vscode"
 }
 ```
@@ -48,7 +48,7 @@ You can extend it with project-specific features and commands:
 ```json
 {
   "name": "My Project",
-  "image": "ghcr.io/akshatmittal/devcontainer:latest",
+  "image": "ghcr.io/akshatmittal/devbox:latest",
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
@@ -74,7 +74,7 @@ Mount them into a consuming repo's `.devcontainer/devcontainer.json`:
 ```json
 {
   "name": "My Project",
-  "image": "ghcr.io/akshatmittal/devcontainer:latest",
+  "image": "ghcr.io/akshatmittal/devbox:latest",
   "mounts": [
     "source=${localEnv:HOME}/.devcontainer-agents/codex,target=/home/vscode/.codex,type=bind",
     "source=${localEnv:HOME}/.devcontainer-agents/claude,target=/home/vscode/.claude,type=bind",

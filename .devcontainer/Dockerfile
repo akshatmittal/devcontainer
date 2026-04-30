@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV PNPM_HOME="/home/vscode/.local/share/pnpm"
 ENV CARGO_HOME="/home/vscode/.cargo"
 ENV FOUNDRY_HOME="/home/vscode/.foundry"
-
+ENV SHELL="bash"
 ENV PATH="${PATH}:${PNPM_HOME}:${CARGO_HOME}/bin:${FOUNDRY_HOME}/bin"
 
 # Basic

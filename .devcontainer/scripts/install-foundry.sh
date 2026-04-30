@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-export SHELL="bash"
-
 # Install Foundry.
 curl -fsSL https://foundry.paradigm.xyz | bash
 foundryup
