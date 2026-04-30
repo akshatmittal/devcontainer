@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo -n "node: "
+echo -n "Node: "
 node --version
 
 echo -n "npm: "
@@ -10,20 +10,23 @@ npm --version
 echo -n "pnpm: "
 pnpm --version
 
-echo -n "codex: "
+echo -n "Codex: "
 codex --version
 
-echo -n "claude: "
+echo -n "Claude: "
 claude --version
 
-echo -n "rustup: "
+echo -n "OpenCode: "
+opencode --version
+
+echo -n "Rustup: "
 rustup --version
 
-echo -n "rustc: "
+echo -n "Rust: "
 rustc --version
 
-echo -n "cargo: "
+echo -n "Cargo: "
 cargo --version
 
-echo -n "ubuntu: "
+echo -n "Ubuntu: "
 lsb_release -ds

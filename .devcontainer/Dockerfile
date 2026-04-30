@@ -54,6 +54,14 @@ set -e
 rm /tmp/install-claude-code.sh
 EOF
 
+# OpenCode
+COPY --chown=vscode:vscode --chmod=755 scripts/install-opencode.sh /tmp/install-opencode.sh
+RUN <<EOF
+set -e
+/tmp/install-opencode.sh
+rm /tmp/install-opencode.sh
+EOF
+
 # Rust
 COPY --chown=vscode:vscode --chmod=755 scripts/install-rust.sh /tmp/install-rust.sh
 RUN <<EOF

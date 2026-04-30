@@ -13,6 +13,7 @@ It includes:
 - `pnpm` via Corepack
 - Codex CLI
 - Claude Code
+- OpenCode
 - Rust stable via `rustup`
 
 ## Using This Image
@@ -57,14 +58,14 @@ You can extend it with project-specific features and commands:
 
 ## Agent Credentials
 
-Do not bake Codex or Claude credentials into the image. Credentials should be mounted into the running devcontainer, not copied during Docker build. This keeps secrets out of image layers and GHCR.
+Do not bake Codex, Claude, or OpenCode credentials into the image. Credentials should be mounted into the running devcontainer, not copied during Docker build. This keeps secrets out of image layers and GHCR.
 
-Prefer using dedicated host folders for devcontainer agent credentials instead of mounting your full host `~/.codex` or `~/.claude` directories. Dedicated folders reduce the chance of exposing unrelated sessions, settings, logs, or tokens to projects that do not need them but still allow sharing agent sessions.
+Prefer using dedicated host folders for devcontainer agent credentials instead of mounting your full host `~/.codex`, `~/.claude`, or `~/.local/share/opencode` directories. Dedicated folders reduce the chance of exposing unrelated sessions, settings, logs, or tokens to projects that do not need them but still allow sharing agent sessions.
 
 Create dedicated host folders:
 
 ```sh
-mkdir -p ~/.devcontainer-agents/codex ~/.devcontainer-agents/claude
+mkdir -p ~/.devcontainer-agents/codex ~/.devcontainer-agents/claude ~/.devcontainer-agents/opencode
 ```
 
 Mount them into a consuming repo's `.devcontainer/devcontainer.json`:
@@ -75,7 +76,8 @@ Mount them into a consuming repo's `.devcontainer/devcontainer.json`:
   "image": "ghcr.io/akshatmittal/devcontainer:latest",
   "mounts": [
     "source=${localEnv:HOME}/.devcontainer-agents/codex,target=/home/vscode/.codex,type=bind",
-    "source=${localEnv:HOME}/.devcontainer-agents/claude,target=/home/vscode/.claude,type=bind"
+    "source=${localEnv:HOME}/.devcontainer-agents/claude,target=/home/vscode/.claude,type=bind",
+    "source=${localEnv:HOME}/.devcontainer-agents/opencode,target=/home/vscode/.local/share/opencode,type=bind"
   ],
   "remoteUser": "vscode"
 }
@@ -87,7 +89,8 @@ If you intentionally want to share your normal host agent state, you can mount t
 {
   "mounts": [
     "source=${localEnv:HOME}/.codex,target=/home/vscode/.codex,type=bind",
-    "source=${localEnv:HOME}/.claude,target=/home/vscode/.claude,type=bind"
+    "source=${localEnv:HOME}/.claude,target=/home/vscode/.claude,type=bind",
+    "source=${localEnv:HOME}/.local/share/opencode,target=/home/vscode/.local/share/opencode,type=bind"
   ]
 }
 ```
