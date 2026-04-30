@@ -28,5 +28,17 @@ rustc --version
 echo -n "Cargo: "
 cargo --version
 
+echo -n "Foundry Forge: "
+forge --version
+
+echo -n "Foundry Cast: "
+cast --version
+
+echo -n "Foundry Anvil: "
+anvil --version
+
+echo -n "Foundry Chisel: "
+chisel --version
+
 echo -n "Ubuntu: "
 lsb_release -ds

@@ -4,9 +4,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 ENV PNPM_HOME="/home/vscode/.local/share/pnpm"
 ENV CARGO_HOME="/home/vscode/.cargo"
-ENV RUSTUP_HOME="/home/vscode/.rustup"
+ENV FOUNDRY_HOME="/home/vscode/.foundry"
 
-ENV PATH="${PATH}:${PNPM_HOME}:${CARGO_HOME}/bin"
+ENV PATH="${PATH}:${PNPM_HOME}:${CARGO_HOME}/bin:${FOUNDRY_HOME}/bin"
 
 # Basic
 RUN <<EOF
@@ -68,6 +68,14 @@ RUN <<EOF
 set -e
 /tmp/install-rust.sh
 rm /tmp/install-rust.sh
+EOF
+
+# Foundry
+COPY --chown=vscode:vscode --chmod=755 scripts/install-foundry.sh /tmp/install-foundry.sh
+RUN <<EOF
+set -e
+/tmp/install-foundry.sh
+rm /tmp/install-foundry.sh
 EOF
 
 USER root

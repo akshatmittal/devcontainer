@@ -15,6 +15,7 @@ It includes:
 - Claude Code
 - OpenCode
 - Rust stable via `rustup`
+- Foundry (`forge`, `cast`, `anvil`, and `chisel`)
 
 ## Using This Image
 
